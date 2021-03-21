@@ -48,7 +48,13 @@ https://qiita.com/minwinmin/items/55ba92edac3e1ec9f602
 NewsはUTF-8のマルチバイト文字をハンドリングする必要がありますが、LovyanGFXのマルチバイト文字のでコード機能をうまく使うことにより、UTF-8をあまり意識せずに使用することができます。
 
 # 開発環境
-リポジトリのソースの開発環境は、VS CODEのPIOを使用しています。Arduino IDEでは、main.cppをmain.ideにリネームすることで、比較的簡単に移行できると思います。（未確認）
+リポジトリのソースの開発環境は、VS CODEのPIOを使用しています。Arduino IDEでは、main.cppをmain.inoにリネームすることで、ビルドできると思います。
+Arduino環境では、ツールメニューから以下を設定してください。
+ボード：ESP32 Dev Module
+Partition Scheme:No OTA(2MB APP/2MB SPIFFS)
+(スケッチエリアを拡大する必要があります。)
+
+
 
 # 来歴
 
@@ -56,3 +62,4 @@ NewsはUTF-8のマルチバイト文字をハンドリングする必要があ�
 - V0.5  2021/01/13 スクロール右端改善
 - V1.0  2021/01/14 40/48dot Font Support
 - V1.1  2021/01/29 Refactoring(UTF-8処理見直し)
+- V1.1a 2021/03/21 README.md見直し(Arduino注意事項追記)
