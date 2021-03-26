@@ -6,6 +6,7 @@
 //        V0.5  2021/01/13 スクロール右端改善
 //        V1.0  2021/01/14 40dot Font Support
 //        V1.1  2021/01/29 Refactoring
+//        V1.2  2021/03/26 テキスト色不正を修正
 // ###########################################################
 //
 //      マジョカアイリス 640*48px 細長LCD 動作テストコード
@@ -183,7 +184,8 @@ void arduino_loop() {
 //  640*48px Buffer to 320*96px LCD
 //=======================================================================
 inline void lcd_buffer_write() {
+  lcd.startWrite();
   lcd.setAddrWindow(0, 0, 320, 96);
-  lcd.pushPixels((uint16_t*)buf.getBuffer(), 640 * 48, true);
+  lcd.writePixels((lgfx::swap565_t*)buf.getBuffer(), 640 * 48);
+  lcd.endWrite();
 }
-
