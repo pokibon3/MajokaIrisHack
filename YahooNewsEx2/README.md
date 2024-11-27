@@ -57,9 +57,6 @@ Arduino環境では、ツールメニューから以下を設定してくださ�
     - Arduino IDE 18.19
     - ESP32 Board Manager by Espressif Systems 1.0.6
     - LovyanGFX 0.3.8
- * 
-
-
 
 # 来歴
 
