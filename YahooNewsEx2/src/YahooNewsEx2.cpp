@@ -7,6 +7,7 @@
 //        V1.0  2021/01/14 40dot Font Support
 //        V1.1  2021/01/29 Refactoring
 //        V1.2  2021/03/26 テキスト色不正を修正
+//        V1.3  2024/11/26 文字色変更、表示をループ化
 // ###########################################################
 //
 //      マジョカアイリス 640*48px 細長LCD 動作テストコード
@@ -51,7 +52,7 @@
 #include <string.h>
 #include "YahooNewsLib.hpp"
 
-#define LCD_FREQ      15000000
+#define LCD_FREQ      20000000
 #define FONT          &fonts::lgfxJapanMincho_40
 #define FONT_SIZE     48                // 40 or 48
 
@@ -91,20 +92,20 @@ void arduino_setup() {
   //  Setup LCD
   //=====================================================================
   panel.freq_write = LCD_FREQ;            // WiFiと同居時は8MHzに設定
-  panel.freq_fill  = 27000000;
-  panel.freq_read  = 16000000;
+//  panel.freq_fill  = 27000000;
+//  panel.freq_read  = 16000000;
   panel.len_dummy_read_pixel = 8;
 
   panel.spi_cs = 33;  //to LCD CS(15)
   panel.spi_dc = -1;
   panel.gpio_rst = 32;  //to LCD RST(2)
 
-  panel.gpio_bl  = -1;
-  panel.pwm_ch_bl = -1;
-  panel.backlight_level = true;
+//  panel.gpio_bl  = -1;
+//  panel.pwm_ch_bl = -1;
+//  panel.backlight_level = true;
 
-  panel.memory_width  = 320;
-  panel.memory_height = 240;
+//  panel.memory_width  = 320;
+//  panel.memory_height = 240;
 
   panel.panel_width  = 320;
   panel.panel_height = 96;
@@ -112,9 +113,9 @@ void arduino_setup() {
   panel.offset_x = 0;
   panel.offset_y = 144;
 
-  panel.rotation = 0;
+//  panel.rotation = 0;
 
-  panel.offset_rotation = 0;
+//  panel.offset_rotation = 0;
 
   lcd.setPanel(&panel);
 
@@ -125,22 +126,27 @@ void arduino_setup() {
 
   buf.setColorDepth(16);
   buf.createSprite(640, 48);
+//  buf.setTextColor(0xFF0000U,0x000000U);
+//  buf.setFont(FONT);
+//  buf.print("ABCDEFG");
+//  lcd_buffer_write();                          // LCDへデータ転送
+//  cBuf.setColorDepth(16);
   cBuf.createSprite(FONT_SIZE, FONT_SIZE);
 //  buf.setFont(&fonts::lgfxJapanGothic_40);        // 40ドットフォント設定
   cBuf.setFont(FONT);       // 40ドットフォント設定
   if (FONT_SIZE == 48) {
     cBuf.setTextSize(1.2, 1.2);
   }
-  cBuf.setTextColor(TFT_WHITE, TFT_BLACK);
+  cBuf.setTextColor(TFT_YELLOW, TFT_NAVY);
   cBuf.setTextWrap(false);
-  buf.setScrollRect(0, (48 - FONT_SIZE) / 2, 640, FONT_SIZE);               // スクロール幅設定
+//  buf.setScrollRect(0, (48 - FONT_SIZE) / 2, 640, FONT_SIZE);               // スクロール幅設定
 }
 
+String str;
 //=======================================================================
 //  main loop()
 //=======================================================================
 void arduino_loop() {
-  String str;
 
   //=====================================================================
   // 180秒(3分)毎にYahoo Newsを取得

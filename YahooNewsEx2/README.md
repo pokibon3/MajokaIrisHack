@@ -53,6 +53,11 @@ Arduino環境では、ツールメニューから以下を設定してくださ�
 - ボード：ESP32 Dev Module<BR>
 - Partition Scheme：No OTA(2MB APP/2MB SPIFFS)：
 (スケッチエリアを拡大する必要があります。)
+- Arduino環境で動作確認したバージョンは以下になります。
+    - Arduino IDE 18.19
+    - ESP32 Board Manager by Espressif Systems 1.0.6
+    - LovyanGFX 0.3.8
+ * 
 
 
 
@@ -64,3 +69,4 @@ Arduino環境では、ツールメニューから以下を設定してくださ�
 - V1.1  2021/01/29 Refactoring(UTF-8処理見直し)
 - V1.1a 2021/03/21 README.md見直し(Arduino注意事項追記)
 - V1.2  2021/03/26 テキスト/背景色不正を修正
+- V1.3  2024/11/26 文字色変更、表示をループ化
